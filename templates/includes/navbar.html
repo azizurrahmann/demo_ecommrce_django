@@ -63,8 +63,13 @@
                         <div class="widget-header">
                             <small class="title text-muted">Welcome guest!</small>
                             <div> 
-                                <a href="./signin.html">Sign in</a> <span class="dark-transp"> | </span>
-                                <a href="./register.html"> Register</a>
+                                {% if request.user.is_authenticated %}
+                                <a href="{% url 'dashboard' %}">Dashboard</a> <span class="dark-transp"> | </span>
+                                <a href={% url 'logout'%}> Logout</a>
+                                {% else %}
+                                <a href="{% url 'login' %}">Sign in</a> <span class="dark-transp"> | </span>
+                                <a href={% url 'register'%}> Register</a>
+                                {% endif %}
                             </div>
                         </div>
                         <a href="{% url 'cart'%}" class="widget-header pl-3 ml-3">
@@ -84,7 +89,7 @@
     
     
     <!-- ========================= SECTION MAIN ========================= -->
-    <section class="section-intro padding-y-sm">
+    {% comment %} <section class="section-intro padding-y-sm">
     <div class="container">
     
     <div class="intro-banner-wrap">
@@ -92,7 +97,7 @@
     </div>
     
     </div> <!-- container //  -->
-    </section>
+    </section> {% endcomment %}
     <!-- ========================= SECTION MAIN END// ========================= -->
     
     <!-- ========================= SECTION  ========================= -->
